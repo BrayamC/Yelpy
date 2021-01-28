@@ -13,22 +13,36 @@ class RestaurantsViewController: UIViewController {
     
     // ––––– TODO: Add storyboard Items (i.e. tableView + Cell + configurations for Cell + cell outlets)
     // ––––– TODO: Next, place TableView outlet here
+    @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var RestaurantImage: UIImageView!
     
+    @IBOutlet weak var tableView: UITableView!
     
     // –––––– TODO: Initialize restaurantsArray
+    var restaurantsArray: [[String:Any?]] = []
     
-    
+
     
     // ––––– TODO: Add tableView datasource + delegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
 
     }
     
     
     // ––––– TODO: Get data from API helper and retrieve restaurants
-    
+    func getAPIData(){
+        API.getRestaurants() { (restaurants) in
+            guard let restaurants = restaurants else {
+                return
+            }
+            print(restaurants)
+            self.restaurantsArray = restaurants
+        }
+    }
 
 }
 
