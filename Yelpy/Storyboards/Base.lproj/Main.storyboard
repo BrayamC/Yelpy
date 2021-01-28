@@ -43,7 +43,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="Label" destination="5gU-AN-E6v" id="ghm-TN-U8i"/>
                                             <outlet property="RestaurantImage" destination="xCG-lv-0aO" id="0Z8-5e-pZh"/>
                                         </connections>
                                     </tableViewCell>
@@ -54,7 +53,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="Label" destination="5gU-AN-E6v" id="yTx-6o-3BJ"/>
                         <outlet property="tableView" destination="gbQ-Ok-x9e" id="7e5-6A-8mC"/>
                     </connections>
                 </viewController>

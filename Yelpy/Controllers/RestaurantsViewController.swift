@@ -9,7 +9,29 @@
 import UIKit
 import AlamofireImage
 
-class RestaurantsViewController: UIViewController {
+class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return restaurantsArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Create Restaurant cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantCell
+        
+        let restaurant = restaurantsArray[indexPath.row]
+        
+        // Set Label to restaurant name for each cell
+        cell.label.text = restaurant["name"] as? String ?? ""
+        
+        // set Image of restaurant
+        if let imageUrlString = restaurant["image_url"] as? String {
+            let imageUrl = URL(string: imageUrlString)
+            cell.restaurantImage.af.setImage(withURL: imageUrl!)
+        }
+        
+        return cell
+    }
+    
     
     // ––––– TODO: Add storyboard Items (i.e. tableView + Cell + configurations for Cell + cell outlets)
     // ––––– TODO: Next, place TableView outlet here
