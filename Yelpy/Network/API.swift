@@ -19,10 +19,9 @@ struct API {
         let apikey = "JliCJk4-hbSILZ8OLbQNRh80b4lzm6MNQsazwBa4LD7KivMBRNsm48yGyh9LZoKogW09bCcKeNgFOk04rkUW-jQJl4d28V_HPKeGuYyBgir-VAOd-c9hoXqHiB4SYHYx"
         
         // Coordinates for San Francisco
-        let lat = 37.773972
-        let long = -122.431297
-        
-        
+        let lat = 34.07445652185061
+        let long = -118.2793485352382
+         
         let url = URL(string: "https://api.yelp.com/v3/transactions/delivery/search?latitude=\(lat)&longitude=\(long)")!
         
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -43,9 +42,9 @@ struct API {
                 // 1. Convert json response to a dictionary
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 // 2. Grab the businesses data and convert it to an array of dictionaries for each restaurant
-                let restaunrants = dataDictionary["businesses"] as! [[String: Any]]
+                let restaurants = dataDictionary["businesses"] as! [[String: Any]]
                 // 3. completion is an escaping method which allows the data to be used outside of the closure
-                return completion(restaunrants)
+                return completion(restaurants)
                 
                 // return completion([[:]])
                 

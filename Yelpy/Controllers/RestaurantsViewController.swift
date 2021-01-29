@@ -24,8 +24,10 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        tableView.rowHeight = 150
         getAPIData()
+        
         
     }
     
@@ -35,6 +37,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
             guard let restaurants = restaurants else {
                 return
             }
+            //print(restaurants)
             self.restaurantsArray = restaurants
             self.tableView.reloadData() // reload data!
         }
@@ -46,6 +49,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         // Create Restaurant cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantCell
         
