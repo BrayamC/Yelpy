@@ -11,17 +11,43 @@ import AlamofireImage
 
 class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // ––––– TODO: Add storyboard Items (i.e. tableView + Cell + configurations for Cell + cell outlets)
+    // ––––– TODO: Next, place TableView outlet here
+    @IBOutlet weak var tableView: UITableView!
     
+    // –––––– TODO: Initialize restaurantsArray
+    var restaurantsArray: [[String:Any?]] = []
     
+    // ––––– TODO: Add tableView datasource + delegate
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        getAPIData()
+        
+    }
+    
+    // ––––– TODO: Get data from API helper and retrieve restaurants
+    func getAPIData() {
+        API.getRestaurants() { (restaurants) in
+            guard let restaurants = restaurants else {
+                return
+            }
+            self.restaurantsArray = restaurants
+            self.tableView.reloadData() // reload data!
+        }
+    }
+
+    // Protocol Stubs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurantsArray.count
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create Restaurant cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantCell
         
         let restaurant = restaurantsArray[indexPath.row]
         
@@ -34,38 +60,8 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
             cell.restaurantImage.af.setImage(withURL: imageUrl!)
         }
         
-        return cell
-    }
-    
-    
-    // ––––– TODO: Add storyboard Items (i.e. tableView + Cell + configurations for Cell + cell outlets)
-    // ––––– TODO: Next, place TableView outlet here
-    @IBOutlet weak var tableView: UITableView!
-    
-    // –––––– TODO: Initialize restaurantsArray
-    var restaurantsArray: [[String:Any?]] = []
-    
-
-    
-    // ––––– TODO: Add tableView datasource + delegate
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-
-    }
-    
-    
-    // ––––– TODO: Get data from API helper and retrieve restaurants
-    func getAPIData() {
-        API.getRestaurants() { (restaurants) in
-            guard let restaurants = restaurants else {
-                return
-            }
-            self.restaurantsArray = restaurants
-            self.tableView.reloadData() // reload data!
-        }
+        return cell
     }
 }
 
