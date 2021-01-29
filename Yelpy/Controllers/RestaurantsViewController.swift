@@ -10,9 +10,14 @@ import UIKit
 import AlamofireImage
 
 class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurantsArray.count
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create Restaurant cell
@@ -35,9 +40,6 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     
     // ––––– TODO: Add storyboard Items (i.e. tableView + Cell + configurations for Cell + cell outlets)
     // ––––– TODO: Next, place TableView outlet here
-    @IBOutlet weak var Label: UILabel!
-    @IBOutlet weak var RestaurantImage: UIImageView!
-    
     @IBOutlet weak var tableView: UITableView!
     
     // –––––– TODO: Initialize restaurantsArray
