@@ -58,16 +58,15 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     // ––––– TODO: Get data from API helper and retrieve restaurants
-    func getAPIData(){
+    func getAPIData() {
         API.getRestaurants() { (restaurants) in
             guard let restaurants = restaurants else {
                 return
             }
-            print(restaurants)
             self.restaurantsArray = restaurants
+            self.tableView.reloadData() // reload data!
         }
     }
-
 }
 
 // ––––– TODO: Create tableView Extension and TableView Functionality
