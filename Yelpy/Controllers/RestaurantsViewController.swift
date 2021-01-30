@@ -25,7 +25,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.rowHeight = 150
+        tableView.rowHeight = 200
         getAPIData()
         
         
@@ -54,6 +54,32 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantCell
         
         let restaurant = restaurantsArray[indexPath.row]
+
+        //print(restaurant)
+        
+        // Display ratings
+        let rating = Double(restaurant["rating"] as? Int ?? 0)
+        switch rating{
+            case 5:
+                cell.stars.image=UIImage(named: "regular_5")
+            case 4.5:
+                cell.stars.image=UIImage(named: "regular_4.5")
+            case 4:
+                cell.stars.image=UIImage(named: "regular_4")
+            case 3.5:
+                cell.stars.image=UIImage(named: "regular_3_half")
+            case 3:
+                cell.stars.image=UIImage(named: "regular_3")
+            case 2.5:
+                cell.stars.image=UIImage(named: "regular_2_half")
+            case 2:
+                cell.stars.image=UIImage(named: "regular_2")
+            case 1.5:
+                cell.stars.image=UIImage(named: "regular_1_half")
+            default:
+                break;
+        }
+       
         
         // Set Label to restaurant name for each cell
         cell.label.text = restaurant["name"] as? String ?? ""
