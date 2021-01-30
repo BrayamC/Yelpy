@@ -63,13 +63,15 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         
         // Display type of restaurant
         let type = restaurant["categories"] as! [[String: Any]]
-
-        
         for temp in type{
             print(temp["alias"]!)
+            cell.type.text = temp["alias"]! as! String
         }
         
-        //print(type(at: 0))
+        // Display review number
+        /*let reviews = restaurant["review_count"] as! String
+        cell.reviews.text = reviews
+        */
         
         // Display ratings
         let rating = Double(restaurant["rating"] as? Int ?? 0)
