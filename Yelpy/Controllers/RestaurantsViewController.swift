@@ -57,22 +57,22 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
 
         //print(restaurant)
         
-        // Display phone of restaurant
-        let phone = String(restaurant["phone"] as? String ?? "Not Found")
-        cell.phone.text = phone
-        
         // Display type of restaurant
         let type = restaurant["categories"] as! [[String: Any]]
         for temp in type{
-            print(temp["alias"]!)
+            //print(temp["alias"]!)
             cell.type.text = temp["alias"]! as! String
         }
+    
+        // Display phone of restaurant
+        let phone = String(restaurant["display_phone"] as? String ?? "Not Found")
+        //print(phone)
+        cell.phone.text = phone
         
-        // Display review number
-        /*let reviews = restaurant["review_count"] as! String
-        cell.reviews.text = reviews
-        */
-        
+        let reviews = Int(restaurant["review_count"] as? Int ?? 0)
+        print(reviews)
+        cell.reviews.text = String(reviews)
+ 
         // Display ratings
         let rating = Double(restaurant["rating"] as? Int ?? 0)
         switch rating{
