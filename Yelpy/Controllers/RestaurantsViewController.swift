@@ -57,6 +57,20 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
 
         //print(restaurant)
         
+        // Display phone of restaurant
+        let phone = String(restaurant["phone"] as? String ?? "Not Found")
+        cell.phone.text = phone
+        
+        // Display type of restaurant
+        let type = restaurant["categories"] as! [[String: Any]]
+
+        
+        for temp in type{
+            print(temp["alias"]!)
+        }
+        
+        //print(type(at: 0))
+        
         // Display ratings
         let rating = Double(restaurant["rating"] as? Int ?? 0)
         switch rating{
